@@ -1,13 +1,27 @@
 package model;
+import java.io.*;
 import java.time.LocalDate;
 
-public class Packaged extends Product implements Edible {
+public class Packaged extends Product implements Edible, Serializable {
 
+    private static final long serialVersionUID = 1L;
+    private static final String COUNTER_FILE = "PackagedCounter.dat";
     private String type;
     private boolean imported;
     private LocalDate expirationDate;
     private int calories;
     private static int instance = 0;
+
+    static {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(COUNTER_FILE))) {
+            instance = (int) ois.readObject();
+        } catch (FileNotFoundException e) {
+            instance = 0;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error al leer el archivo del contador: " + e.getMessage());
+            instance = 0;
+        }
+    }
 
     public Packaged(String description, int stock, float price, float porcentage, boolean available, String type, boolean imported, LocalDate expirationDate, int calories, float discount) {
         super(generateId(), description, stock, price, porcentage, available,discount);
@@ -15,6 +29,15 @@ public class Packaged extends Product implements Edible {
         this.imported = imported;
         this.expirationDate = expirationDate;
         this.calories = calories;
+        saveInstanceCounter();
+    }
+
+    private static void saveInstanceCounter() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(COUNTER_FILE))) {
+            oos.writeObject(instance);
+        } catch (IOException e) {
+            System.out.println("Error al guardar el archivo del contador: " + e.getMessage());
+        }
     }
 
     private static String generateId() {
@@ -65,11 +88,12 @@ public class Packaged extends Product implements Edible {
 
     @Override
     public String toString() {
-        return "Packaged{" +
-                "type='" + type + '\'' +
-                ", imported=" + imported +
-                ", expirationDate=" + expirationDate +
-                ", calories=" + calories +
-                "} " + super.toString();
+        return
+                "Tipo=' " + type + '\'' + System.lineSeparator() +
+                "Importado= " + imported + System.lineSeparator() +
+                "Fecha de vencimiento= " + expirationDate + System.lineSeparator() +
+                "Calorías= " + calories + System.lineSeparator()
+                + super.toString() + System.lineSeparator();
     }
+
 }

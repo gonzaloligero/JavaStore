@@ -15,6 +15,7 @@ public class Cleaner extends Product {
         this.applicationType = applicationType;
     }
 
+
     private static String generateId() {
         instance++;
         return String.format("AZ%03d", instance);

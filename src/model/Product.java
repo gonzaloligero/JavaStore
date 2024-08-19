@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String id;
     private String description;
     private int stock;
@@ -103,16 +105,16 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", description='" + description + '\'' +
-                ", stock=" + stock +
-                ", price=" + price +
-                ", porcentage=" + porcentage +
-                ", available=" + available +
-                ", discount=" + discount +
-                '}';
+        return
+                "ID= '" + id + '\'' + System.lineSeparator() +
+                "Descripción= '" + description + '\'' + System.lineSeparator() +
+                "Stock= " + stock + System.lineSeparator() +
+                "Precio= " + price + System.lineSeparator() +
+                "Porcentaje= " + porcentage + System.lineSeparator() +
+                "Disponible=" + available + System.lineSeparator() +
+                "Descuento aplicado= " + discount + System.lineSeparator();
     }
+
 
     @Override
     public boolean equals(Object o) {
