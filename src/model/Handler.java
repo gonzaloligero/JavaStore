@@ -45,4 +45,16 @@ public class Handler {
             }
         }
     }
+
+    public static Cleaner.ApplicationType getApplicationTypeInput(String prompt) {
+        System.out.print(prompt);
+        while (true) {
+            String input = scanner.next().toUpperCase();
+            try {
+                return Cleaner.ApplicationType.valueOf(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Tipo de aplicación no válido. Por favor ingresa uno de los siguientes: COCINA, BAÑO, ROPA, MULTIUSO.");
+            }
+        }
+    }
 }

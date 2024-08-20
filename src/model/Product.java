@@ -100,7 +100,7 @@ public abstract class Product implements Serializable {
     }
 
     public float calculateFinalPrice() {
-        return price * (1 - discount / 100);
+        return getPrice();
     }
 
     @Override
