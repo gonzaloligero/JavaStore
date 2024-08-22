@@ -14,18 +14,55 @@ public abstract class Product implements Serializable {
     private boolean available;
     private float discount;
 
-    public Product(String id, String description, int stock, float price, float porcentage, boolean available, float discount) {
-        if (!validateId(id)) {
-            throw new IllegalArgumentException("Invalid product ID: " + id);
-        }
-        this.id = id;
-        this.description = description;
-        this.stock = stock;
-        this.price = price;
-        this.porcentage = porcentage;
-        this.available = available;
-        this.discount = discount;
+
+   public Product(String id, String description, int stock, float price, float porcentage, boolean available, float discount) {
+    if (id == null || id.isEmpty() || !validateId(id)) {
+        throw new IllegalArgumentException("ID de producto inválido: " + id);
     }
+    if (description == null || description.isEmpty()) {
+        throw new IllegalArgumentException("La descripción no puede ser nula ni vacía");
+    }
+    if (stock < 0) {
+        throw new IllegalArgumentException("El stock no puede ser negativo");
+    }
+    if (price < 0) {
+        throw new IllegalArgumentException("El precio no puede ser negativo");
+    }
+    if (porcentage < 0 || porcentage > 100) {
+        throw new IllegalArgumentException("El porcentaje debe estar entre 0 y 100");
+    }
+    if (discount < 0 || discount > 100) {
+        throw new IllegalArgumentException("El descuento debe estar entre 0 y 100");
+    }
+    if (!isNumeric(String.valueOf(stock))) {
+        throw new IllegalArgumentException("El stock debe ser un número");
+    }
+    if (!isNumeric(String.valueOf(price))) {
+        throw new IllegalArgumentException("El precio debe ser un número");
+    }
+    if (!isNumeric(String.valueOf(porcentage))) {
+        throw new IllegalArgumentException("El porcentaje debe ser un número");
+    }
+    if (!isNumeric(String.valueOf(discount))) {
+        throw new IllegalArgumentException("El descuento debe ser un número");
+    }
+    this.id = id;
+    this.description = description;
+    this.stock = stock;
+    this.price = price;
+    this.porcentage = porcentage;
+    this.available = available;
+    this.discount = discount;
+}
+
+private boolean isNumeric(String str) {
+    try {
+        Float.parseFloat(str);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
 
     public Product() {
         this.id = "A0000";

@@ -24,13 +24,24 @@ public class Packaged extends Product implements Edible, Serializable {
     }
 
     public Packaged(String description, int stock, float price, float porcentage, boolean available, String type, boolean imported, LocalDate expirationDate, int calories, float discount) {
-        super(generateId(), description, stock, price, porcentage, available,discount);
-        this.type = type;
-        this.imported = imported;
-        this.expirationDate = expirationDate;
-        this.calories = calories;
-        saveInstanceCounter();
+    super(generateId(), description, stock, price, porcentage, available, discount);
+
+    if (type == null || type.isEmpty()) {
+        throw new IllegalArgumentException("El tipo no puede ser nulo ni vacío");
     }
+    if (expirationDate == null) {
+        throw new IllegalArgumentException("La fecha de vencimiento no puede ser nula");
+    }
+    if (calories < 0) {
+        throw new IllegalArgumentException("Las calorías no pueden ser negativas");
+    }
+
+    this.type = type;
+    this.imported = imported;
+    this.expirationDate = expirationDate;
+    this.calories = calories;
+    saveInstanceCounter();
+}
 
     private static void saveInstanceCounter() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(COUNTER_FILE))) {

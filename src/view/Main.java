@@ -54,8 +54,6 @@ public class Main {
     }
 
 
-
-
     static int getIntInput(String prompt) {
         System.out.print(prompt);
         while (!scanner.hasNextInt()) {

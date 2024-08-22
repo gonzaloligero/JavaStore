@@ -24,10 +24,23 @@ public class Cleaner extends Product {
     private ApplicationType applicationType;
 
     public Cleaner(String id, String description, int stock, float price, float porcentage, boolean available, ApplicationType applicationType, float discount) {
-        super(generateId(), description, stock, price, porcentage, available, discount);
-        this.applicationType = applicationType;
-        saveInstanceCounter();
+    super(generateId(), description, stock, price, porcentage, available, discount);
+    if (applicationType == null) {
+        throw new IllegalArgumentException("El tipo de aplicación no puede ser nulo");
     }
+    boolean validApplicationType = false;
+    for (ApplicationType type : ApplicationType.values()) {
+        if (type == applicationType) {
+            validApplicationType = true;
+            break;
+        }
+    }
+    if (!validApplicationType) {
+        throw new IllegalArgumentException("Tipo de aplicación inválido: " + applicationType);
+    }
+    this.applicationType = applicationType;
+    saveInstanceCounter();
+}
 
 
     public static String generateId() {

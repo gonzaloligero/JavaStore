@@ -3,6 +3,7 @@ package view;
 
 import model.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,23 +13,22 @@ public class TestTienda {
     public static void main(String[] args) {
 
         List<Product> productos = new ArrayList<>();
-        productos.add(new Packaged("Arroz", 50, 10.0f, 5, false, "Granos", false, null, 0, 0.0f));
-        productos.add(new Packaged("Arroz", 50, 10.0f, 5, false, "Granos", false, null, 0, 0.0f));
-        productos.add(new Packaged("Fideos", 30, 20.0f, 10, false, "Pasta", false, null, 0, 0.0f));
-        productos.add(new Packaged("Lentejas", 40, 15.0f, 7, false, "Legumbres", false, null, 0, 0.0f));
-        productos.add(new Packaged("Galletas", 25, 5.0f, 20, false, "Snacks", false, null, 0, 0.0f));
-        productos.add(new Packaged("Cereal", 60, 12.0f, 8, false, "Desayuno", false, null, 0, 0.0f));
-        productos.add(new Packaged("Arroz Integral", 50, 11.0f, 5, false, "Granos", false, null, 0, 0.0f));
-        productos.add(new Packaged("Macarrones", 30, 21.0f, 10, false, "Pasta", false, null, 0, 0.0f));
-        productos.add(new Packaged("Garbanzos", 40, 16.0f, 7, false, "Legumbres", false, null, 0, 0.0f));
-        productos.add(new Packaged("Chocolates", 25, 6.0f, 20, false, "Snacks", false, null, 0, 0.0f));
-        productos.add(new Packaged("Avena", 60, 13.0f, 8, false, "Desayuno", false, null, 0, 0.0f));
-        productos.add(new Drinkable("Vino", 20, 100.0f, 15, false, 12, false, null, 0, 0.0f));
-        productos.add(new Drinkable("Cerveza", 10, 50.0f, 10, true, 5, false, null, 0, 0.0f));
-        productos.add(new Drinkable("Jugo", 30, 20.0f, 5, false, 0, false, null, 0, 0.0f));
-        productos.add(new Drinkable("Agua", 50, 10.0f, 2, false, 0, false, null, 0, 0.0f));
-        productos.add(new Drinkable("Refresco", 40, 25.0f, 8, false, 0, false, null, 0, 0.0f));
-
+        productos.add(new Packaged("Arroz", 50, 10.0f, 5, false, "Granos", false, LocalDate.of(2025, 1, 1), 0, 0.0f));
+        productos.add(new Packaged("Arroz", 50, 10.0f, 5, false, "Granos", false, LocalDate.of(2025, 1, 2), 0, 0.0f));
+        productos.add(new Packaged("Fideos", 30, 20.0f, 10, false, "Pasta", false, LocalDate.of(2025, 1, 3), 0, 0.0f));
+        productos.add(new Packaged("Lentejas", 40, 15.0f, 7, false, "Legumbres", false, LocalDate.of(2025, 1, 4), 0, 0.0f));
+        productos.add(new Packaged("Galletas", 25, 5.0f, 20, false, "Snacks", false, LocalDate.of(2025, 1, 5), 0, 0.0f));
+        productos.add(new Packaged("Cereal", 60, 12.0f, 8, false, "Desayuno", false, LocalDate.of(2025, 1, 6), 0, 0.0f));
+        productos.add(new Packaged("Arroz Integral", 50, 11.0f, 5, false, "Granos", false, LocalDate.of(2025, 1, 7), 0, 0.0f));
+        productos.add(new Packaged("Macarrones", 30, 21.0f, 10, false, "Pasta", false, LocalDate.of(2025, 1, 8), 0, 0.0f));
+        productos.add(new Packaged("Garbanzos", 40, 16.0f, 7, false, "Legumbres", false, LocalDate.of(2025, 1, 9), 0, 0.0f));
+        productos.add(new Packaged("Chocolates", 25, 6.0f, 20, false, "Snacks", false, LocalDate.of(2025, 1, 10), 0, 0.0f));
+        productos.add(new Packaged("Avena", 60, 13.0f, 8, false, "Desayuno", false, LocalDate.of(2025, 1, 11), 0, 0.0f));
+        productos.add(new Drinkable("Vino", 20, 100.0f, 15, false, 12, false, LocalDate.of(2025, 1, 12), 0, 0.0f));
+        productos.add(new Drinkable("Cerveza", 10, 50.0f, 10, true, 5, false, LocalDate.of(2025, 1, 13), 0, 0.0f));
+        productos.add(new Drinkable("Jugo", 30, 20.0f, 5, false, 0, false, LocalDate.of(2025, 1, 14), 0, 0.0f));
+        productos.add(new Drinkable("Agua", 50, 10.0f, 2, false, 0, false, LocalDate.of(2025, 1, 15), 0, 0.0f));
+        productos.add(new Drinkable("Refresco", 40, 25.0f, 8, false, 0, false, LocalDate.of(2025, 1, 16), 0, 0.0f));
 
         realizarCompra(productos.get(0), 5);
         realizarVenta(productos.get(1), 10);
